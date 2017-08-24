@@ -13,12 +13,10 @@ components.add('week', {
    },
 
 
-
-
    template:
       `
       <div class="week">
-         <day :day="day" v-for="day in week.days"/>
+         <day v-if="day.date < new Date()" :day="day" v-for="day in week.days"/>
       </div>
       `
 })

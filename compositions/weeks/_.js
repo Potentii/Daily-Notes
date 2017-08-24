@@ -30,10 +30,7 @@ components.add('weeks', {
 
          // *Setting today date:
          const today = new Date();
-         today.setHours(0);
-         today.setMinutes(0);
-         today.setSeconds(0);
-         today.setMilliseconds(0);
+         today.setHours(0, 0, 0, 0);
 
          // *Checking if there are any weeks already registered:
          if(!weeks || !weeks.length){
@@ -74,6 +71,7 @@ components.add('weeks', {
          for(let i=0; i<7; i++){
             const new_day = new Date();
             new_day.setDate(week_start_day + i);
+            new_day.setHours(0, 0, 0, 0);
             week.addDay(new Day('', new_day));
          }
 

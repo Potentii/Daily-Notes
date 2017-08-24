@@ -9,6 +9,10 @@ navigation.addRoute('index', '/', {
       `
       <div class="index content-page">
          <div class="content-wrapper">
+            <div class="-logo">
+               Daily notes
+            </div>
+            <div class="-horizontal-line"/>
             <weeks/>
          </div>
       </div>

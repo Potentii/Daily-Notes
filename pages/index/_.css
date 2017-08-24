@@ -1,1 +1,15 @@
+.index.content-page > .content-wrapper > .-logo{
+   align-self: flex-start;
+   padding: 1rem;
+   font-size: 2em;
+   font-family: 'Roboto Bold';
+   letter-spacing: 0.08em;
+   text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.1);
+}
 
+.index.content-page > .content-wrapper > .-horizontal-line{
+   width: calc(100% - 2rem);
+   height: 1pt;
+   background-color: rgba(0, 0, 0, 0.08);
+   margin: 1em auto;
+}
