@@ -1,0 +1,11 @@
+.weeks{
+   padding: 1em 1em;
+   width: 100%;
+}
+
+.weeks > .week{
+   
+   margin-bottom: 1em;
+   border-radius: 2px;
+   box-shadow: 0px 2px 3px -0.5px rgba(0, 0, 0, 0.2);
+}

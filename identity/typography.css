@@ -1,0 +1,81 @@
+@font-face {
+   font-family: 'Material Icons';
+   font-style: normal;
+   font-weight: 400;
+   src:
+      local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(../res/fonts/MaterialIcons-Regular.woff) format('woff');
+}
+@font-face {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: normal;
+   src:
+      local('Roboto Regular'),
+      url(../res/fonts/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+   font-family: 'Roboto Medium';
+   font-style: normal;
+   font-weight: normal;
+   src:
+      local('Roboto Medium'),
+      url(../res/fonts/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+   font-family: 'Roboto Bold';
+   font-style: normal;
+   font-weight: normal;
+   src:
+      local('Roboto Bold'),
+      url(../res/fonts/Roboto-Bold.ttf) format('truetype');
+}
+@font-face {
+   font-family: 'Roboto Slab';
+   font-style: normal;
+   font-weight: 400;
+   src:
+      local('RobotoSlab Regular'),
+      url(../res/fonts/RobotoSlab-Regular.ttf) format('truetype');
+}
+
+/**
+ * Setting the default app typography
+ */
+:root{
+   font-family: 'Roboto', sans-serif;
+   font-size: 1rem;
+   font-weight: 400;
+   letter-spacing: .04em;
+}
+
+
+
+/**
+ * Material icons font
+ */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

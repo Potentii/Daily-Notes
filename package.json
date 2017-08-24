@@ -1,0 +1,17 @@
+{
+  "name": "daily-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Guilherme Reginaldo Ruella",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.7.5",
+    "marked": "^0.3.6",
+    "vue": "^2.4.2",
+    "vue-router": "^2.7.0"
+  }
+}

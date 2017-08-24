@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- * Meta * -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width"/>
+
+      <!-- * Identity * -->
+      <link rel="stylesheet" href="./identity/resets.css">
+      <link rel="stylesheet" href="./identity/colors.css">
+      <link rel="stylesheet" href="./identity/typography.css">
+      <link rel="stylesheet" href="./identity/content-page.css">
+
+      <!-- * Libraries * -->
+      <script src="./node_modules/vue/dist/vue.min.js"></script>
+      <script src="./node_modules/vue-router/dist/vue-router.min.js"></script>
+
+      <!-- * Controls * -->
+      <script src="./controls/components.js"></script>
+      <script src="./controls/navigation.js"></script>
+
+      <!-- * Types * -->
+      <script src="./types/day.js"></script>
+      <script src="./types/week.js"></script>
+
+      <!-- * Repositories * -->
+      <script src="./repository/repositories.js"></script>
+
+
+      <!-- * Elements * -->
+
+      <!-- * Components * -->
+      <link  href="./components/day/_.css" rel="stylesheet">
+      <script src="./components/day/_.js"></script>
+      <link  href="./components/week/_.css" rel="stylesheet">
+      <script src="./components/week/_.js"></script>
+
+      <!-- * Compositions * -->
+      <link  href="./compositions/weeks/_.css" rel="stylesheet">
+      <script src="./compositions/weeks/_.js"></script>
+
+      <!-- * Pages * -->
+      <link  href="./pages/index/_.css" rel="stylesheet">
+      <script src="./pages/index/_.js"></script>
+
+      <!-- * Initializations * -->
+      <script>
+      navigation
+         .navigationMode(navigation.MODES.ABSTRACT)
+         .mountOn('#app')
+         .then(router => {
+            router.replace({ name: 'index' });
+            console.log('OK');
+         })
+         .catch(err => console.error(err));
+      </script>
+
+      <!-- * App title * -->
+      <title>Daily</title>
+   </head>
+   <body>
+      <div id="app">
+         <router-view></router-view>
+      </div>
+   </body>
+</html>

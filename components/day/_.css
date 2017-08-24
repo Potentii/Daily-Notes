@@ -1,0 +1,50 @@
+.day{
+   display: flex;
+   flex-direction: column;
+   padding: 0.8em 0.5em;
+} .day.-today::before{
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0px;
+   width: 3px;
+   height: 100%;
+   background-color: #80D8FF;
+}
+
+.day > .-weekday-name{
+   opacity: 0.6;
+   font-size: 0.7em;
+} .day.-today > .-weekday-name{
+   opacity: 0.9;
+   font-family: 'Roboto Medium';
+}
+
+.day > .-date{
+   font-size: 0.9em;
+} .day.-today > .-date{
+   font-family: 'Roboto Medium';
+}
+
+.day > .-editor{
+   margin-top: 0.3em;
+   padding: 0.3em 0.3em;
+   border-radius: 2px;
+   white-space: pre-wrap;
+   transition: padding, background-color, margin-top, color, 0.15s ease;
+} .day > .-editor.-editing{
+   padding: 0.5em 0.3em;
+   background-color: #E0E0E0;
+   color: #212121;
+} .day > .-editor:not(.-editing) ul{
+   padding-left: 1rem;
+   font-size: 0px;
+} .day > .-editor:not(.-editing) li{
+   font-size: 1rem;
+   list-style: disc;
+   margin: 0.15em 0;
+} .day > .-editor:not(.-editing) li ul li{
+   list-style: circle;
+} .day > .-editor:not(.-editing) p{
+   display: block;
+}
