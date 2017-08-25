@@ -23,41 +23,50 @@ components.add('weeks', {
        * Loads this component
        */
       load(){
-         // *Getting the weeks from the storage:
-         let weeks = repositories.get('weeks').load()
-            // *Sorting them by date:
-            .sort((w1, w2) => w2.days[0].date - w1.days[0].date);
 
-         // *Setting today date:
-         const today = new Date();
-         today.setHours(0, 0, 0, 0);
+         const repository = require('./repository/offline');
 
-         // *Checking if there are any weeks already registered:
-         if(!weeks || !weeks.length){
-            // *If there aren't:
-            // *Creating a new week:
-            weeks = [this.createWeekOfDate(today)];
-            // *Saving this week:
-            repositories.get('weeks').save(weeks);
-         } else{
-            // *If there are:
-            // *Getting the last day of the last registered week:
-            let last_day_of_last_week = new Date(weeks[0].days[0].date);
-            // *Checking if the last registered week is the current one:
-            if(last_day_of_last_week < today){
-               // *If it isn't:
-               // *Creating all the weeks needed:
-               while(last_day_of_last_week < today){
-                  last_day_of_last_week.setDate(last_day_of_last_week.getDate() + 7);
-                  weeks.push(this.createWeekOfDate(last_day_of_last_week));
+         // *Getting the weeks from the repository:
+         repository.load('weeks')
+            .then(weeks => {
+               // *Sorting the weeks by date:
+               weeks.sort((w1, w2) => w2.days[0].date - w1.days[0].date);
+
+               // *Setting today date:
+               const today = new Date();
+               today.setHours(0, 0, 0, 0);
+
+               // *Checking if there are any weeks already registered:
+               if(!weeks || !weeks.length){
+                  // *If there aren't:
+                  // *Creating a new week:
+                  weeks = [this.createWeekOfDate(today)];
+                  // *Saving this week:
+                  return repository.save('weeks', weeks)
+                     .then(_ => weeks);
+               } else{
+                  // *If there are:
+                  // *Getting the last day of the last registered week:
+                  let last_day_of_last_week = new Date(weeks[0].days[0].date);
+                  // *Checking if the last registered week is the current one:
+                  if(last_day_of_last_week < today){
+                     // *If it isn't:
+                     // *Creating all the weeks needed:
+                     while(last_day_of_last_week < today){
+                        last_day_of_last_week.setDate(last_day_of_last_week.getDate() + 7);
+                        weeks.push(this.createWeekOfDate(last_day_of_last_week));
+                     }
+                     // *Saving the new weeks array:
+                     return repository.save('weeks', weeks)
+                        .then(_ => weeks);
+                  }
                }
-               // *Saving the new weeks array:
-               repositories.get('weeks').save(weeks);
-            }
-         }
+               return weeks;
+            })
 
-         // *Applying the weeks array into the view model:
-         this.weeks = weeks;
+            // *Applying the weeks array into the view:
+            .then(weeks => this.weeks = weeks)
+            .catch(console.error);
       },
 
 

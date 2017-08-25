@@ -1,12 +1,9 @@
 'use strict';
 
-// *Requesting electron:
-const electron = require('electron');
-const { app, BrowserWindow } = electron;
-
-// *Requesting the needed native modules:
+// *Getting the needed modules:
 const path = require('path');
-
+const electron = require('electron');
+const { app, BrowserWindow, ipcMain } = electron;
 
 
 /**
@@ -23,7 +20,7 @@ let win = null;
  */
 const settings = {
    display: {
-      width: 720,
+      width: 768,
       height: 810
    },
    address: 'file://' + path.join(__dirname, './index.html')
@@ -31,22 +28,35 @@ const settings = {
 
 
 
-// *When electron is ready:
-app.on('ready', () => {
-   // *Creating the window frame:
-   createWindow(settings);
+// *When a second instance of this app is started:
+const is_second_instance = app.makeSingleInstance((argv, wd) => {
+   // *Checking if the main window is set:
+   if(win){
+      // *If it is:
+      // *Restoring it if it's minimized:
+      if(win.isMinimized())
+         win.restore();
+      // *Focusing the main window:
+      win.focus();
+   }
 });
+
+// *Quitting the application if this is the second instance:
+if(is_second_instance)
+  app.quit();
+
+
+
+// *Creating the window frame when electron gets ready:
+app.on('ready', () => createWindow(settings));
 
 
 
 // *When all windows get closed:
 app.on('window-all-closed', () => {
-   // *Checking if the OS is a Macintosh:
-   if(process.platform !== 'darwin'){
-      // *If it's not:
-      // *Quitting the application:
+   // *Quitting the application if the OS isn't a Macintosh:
+   if(process.platform !== 'darwin')
       app.quit();
-   }
 });
 
 
@@ -65,7 +75,6 @@ app.on('activate', () => {
 
 /**
  * Creates a new window frame
- * @author Guilherme Reginaldo Ruella
  */
 function createWindow(settings){
 
@@ -77,16 +86,11 @@ function createWindow(settings){
       show: false
    });
 
-   // *When the window closes:
-   win.on('closed', () => {
-      // *Removing the window reference:
-      win = null;
-   });
+   // *Removing the window reference when it gets closed:
+   win.once('closed', () => win = null);
 
-   win.once('ready-to-show', () => {
-      // *Displaying the window frame:
-      win.show();
-   });
+   // *Displaying the window frame when it gets ready to be shown:
+   win.once('ready-to-show', () => win.show());
 
    // *Removing the default toolbar:
    //win.setMenu(null);

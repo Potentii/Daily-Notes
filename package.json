@@ -4,14 +4,20 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "debug": "electron . --inspect-brk",
+    "build": "electron-packager . \"Daily Notes\" --platform=win32 --arch=x64 --overwrite=true --asar=true --version-string.FileDescription=\"Daily Notes\" --version-string.CompanyName=\"Guilherme Reginaldo Ruella\""
   },
   "author": "Guilherme Reginaldo Ruella",
   "license": "MIT",
   "dependencies": {
     "electron": "^1.7.5",
     "marked": "^0.3.6",
+    "mkdirp": "^0.5.1",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^9.0.0"
   }
 }

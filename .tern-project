@@ -5,6 +5,7 @@
   ],
   "dontLoad": [
     "node_module/**"
+    "Daily Notes-*"
   ],
   "plugins": {
     "doc_comment": true,

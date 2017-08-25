@@ -64,12 +64,19 @@ components.add('day', {
       saveNotes(){
          if(this.day.notes === this.notes_md) return;
 
-         const weeks = repositories.get('weeks').load();
-         for(let week of weeks) {
-            let day = week.days.find(day => day.date.toString() === this.day.date.toString());
-            if(day) day.notes = this.notes_md;
-         }
-         repositories.get('weeks').save(weeks);
+         const repository = require('./repository/offline');
+
+         repository.load('weeks')
+            .then(weeks => {
+
+               for(let week of weeks) {
+                  let day = week.days.find(day => day.date.toString() === this.day.date.toString());
+                  if(day) day.notes = this.notes_md;
+               }
+
+               return repository.save('weeks', weeks);
+            })
+            .catch(console.error);
       }
    },
 
