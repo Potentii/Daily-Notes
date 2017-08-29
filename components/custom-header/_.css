@@ -1,0 +1,9 @@
+/**
+ * Root
+ */
+.custom-header{
+   padding: 0.6em 1em;
+   background-color: var(--primary-color);
+   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+   z-index: 8;
+}

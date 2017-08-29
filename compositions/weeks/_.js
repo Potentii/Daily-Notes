@@ -54,7 +54,7 @@ components.add('weeks', {
                      // *Creating all the weeks needed:
                      while(last_day_of_last_week < today){
                         last_day_of_last_week.setDate(last_day_of_last_week.getDate() + 7);
-                        weeks.push(this.createWeekOfDate(last_day_of_last_week));
+                        weeks.unshift(this.createWeekOfDate(last_day_of_last_week));
                      }
                      // *Saving the new weeks array:
                      return repository.save('weeks', weeks)
@@ -70,22 +70,31 @@ components.add('weeks', {
       },
 
 
+
       createWeekOfDate(date){
          // *Creating a new week object:
          const week = new Week([]);
          // *Getting the first day of this week:
-         const week_start_day = date.getDate() - date.getDay();
+         const last_sunday = this.getLastSunday(date);
 
          // *Adding all the days into this week:
          for(let i=0; i<7; i++){
             const new_day = new Date();
-            new_day.setDate(week_start_day + i);
+            new_day.setDate(last_sunday.getDate() + i);
             new_day.setHours(0, 0, 0, 0);
             week.addDay(new Day('', new_day));
          }
 
          // *Returning the week:
          return week;
+      },
+
+
+
+      getLastSunday(date){
+         var sunday = new Date(date);
+         sunday.setDate(sunday.getDate() - sunday.getDay());
+         return sunday;
       }
    },
 

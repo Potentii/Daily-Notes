@@ -4,7 +4,7 @@
     "chai"
   ],
   "dontLoad": [
-    "node_module/**"
+    "node_module/**",
     "Daily Notes-*"
   ],
   "plugins": {
