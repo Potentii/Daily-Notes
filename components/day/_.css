@@ -11,7 +11,7 @@
    border-radius: 0.35em;
    width: 0.35em;
    height: 100%;
-   background-color: #80D8FF;
+   background-color: var(--accent-color);
 }
 
 .day > .-weekday-name{
@@ -38,8 +38,7 @@
    transition: padding, background-color, margin-top, color, 0.15s ease;
 } .day > .-editor.-editing{
    padding: 0.6em 0.8em;
-   background-color: #E0E0E0;
-   color: #212121;
+   background-color: var(--contrast-color);
 } .day > .-editor:not(.-editing) ul{
    padding-left: 1rem;
    font-size: 0px;

@@ -6,6 +6,10 @@ components.add('week', {
 
 
    props: {
+      'weekends' : {
+         type: Boolean,
+         required: true
+      },
       'week': {
          type: Object,
          required: true
@@ -16,7 +20,7 @@ components.add('week', {
    template:
       `
       <div class="week">
-         <day v-if="day.date < new Date()" :day="day" v-for="day in week.days"/>
+         <day v-show="(day.notes || (weekends || day.date.getDay()!=0 && day.date.getDay()!=6)) && day.date < new Date()" :day="day" v-for="day in week.days"/>
       </div>
       `
 })

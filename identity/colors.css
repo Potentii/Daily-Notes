@@ -2,9 +2,12 @@
  * The app colors
  */
 :root{
-   --primary-color: #00BCD4;
+   --primary-color: #80D8FF;
+   --accent-color: #80D8FF;
 
    --color: #F5F5F5;
+   --medium-color: #EEEEEE;
+   --contrast-color: #E0E0E0;
 
    --icon-color: #424242;
    --icon-on-primary-color: #F5F5F5;
@@ -19,7 +22,7 @@
  * Setting the main foreground color
  */
 body{
-   background-color: var(--color);
+   background-color: var(--medium-color);
 }
 
 /**

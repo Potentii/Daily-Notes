@@ -11,6 +11,8 @@
   "author": "Guilherme Reginaldo Ruella",
   "license": "MIT",
   "dependencies": {
+    "@material/checkbox": "^0.4.5",
+    "@material/fab": "^0.3.16",
     "electron": "^1.7.5",
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",

@@ -1,7 +1,4 @@
 .week{
    padding: 1em;
-}
-
-.week > .day{
-   
+   background-color: var(--color);
 }

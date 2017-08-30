@@ -1,6 +1,7 @@
 navigation.addRoute('index', '/', {
 
    components: {
+      'checkbox': components.get('checkbox'),
       'weeks': components.get('weeks'),
       'custom-header': components.get('custom-header')
    },
@@ -15,10 +16,15 @@ navigation.addRoute('index', '/', {
    },
 
 
+   mounted(){
+      MDCRipple.attachTo(document.querySelector('.mdc-fab'));
+   },
+
+
    methods: {
       onRootClick(e){
          if(this.show_more_menu === true
-            && this.$refs.menu_button != e.target
+            && this.$refs.menu_fab != e.target
             && !this.$refs.menu.contains(e.target))
             this.show_more_menu = false;
 
@@ -30,14 +36,13 @@ navigation.addRoute('index', '/', {
       <div class="index content-page" @click="onRootClick">
          <custom-header>
             <input type="text" class="-project-title" v-model="project_name"/>
-            <button class="project-more-button material-icons fab" ref="menu_button" type="button" @click="show_more_menu = true">more_vert</button>
+            <button type="button" ref="menu_fab" class="project-more-fab mdc-fab material-icons" aria-label="More" @click="show_more_menu = !show_more_menu">more_vert</button>
             <ul class="project-more-menu" ref="menu" v-show="show_more_menu">
-               <li><span>Show weekends</span><input type="checkbox" v-model="show_weekends"/></li>
-               <li><span>Show</span><input type="checkbox" v-model="show_weekends"/></li>
+               <checkbox title="Show weekends" label="Weekends" v-model="show_weekends"></checkbox>
             </ul>
          </custom-header>
          <div class="content-wrapper">
-            <weeks/>
+            <weeks :weekends="show_weekends"/>
          </div>
       </div>
       `

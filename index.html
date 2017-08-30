@@ -5,15 +5,43 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width"/>
 
+
       <!-- * Identity * -->
       <link rel="stylesheet" href="./identity/resets.css">
       <link rel="stylesheet" href="./identity/colors.css">
       <link rel="stylesheet" href="./identity/typography.css">
       <link rel="stylesheet" href="./identity/content-page.css">
 
+
       <!-- * Libraries * -->
+      <!-- * Vue * -->
       <script src="./node_modules/vue/dist/vue.min.js"></script>
       <script src="./node_modules/vue-router/dist/vue-router.min.js"></script>
+
+      <!-- * MDC * -->
+      <script src="./node_modules/@material/base/dist/mdc.base.min.js"></script>
+
+      <link  href="./node_modules/@material/ripple/dist/mdc.ripple.min.css" rel="stylesheet">
+      <script src="./node_modules/@material/ripple/dist/mdc.ripple.min.js"></script>
+
+      <link  href="./node_modules/@material/fab/dist/mdc.fab.min.css" rel="stylesheet">
+
+      <link  href="./node_modules/@material/checkbox/dist/mdc.checkbox.min.css" rel="stylesheet">
+      <script src="./node_modules/@material/checkbox/dist/mdc.checkbox.min.js"></script>
+
+      <script>
+         // *Installing MDC components:
+         // *Installing the base component:
+         const MDCComponent = mdc.base.MDCComponent;
+         // *Installing the ripple component:
+         const MDCRipple = mdc.ripple.MDCRipple;
+         const MDCRippleFoundation = mdc.ripple.MDCRippleFoundation;
+         const util = mdc.ripple.util;
+         // *Installing the checkbox component:
+         const MDCCheckbox = mdc.checkbox.MDCCheckbox;
+         const MDCCheckboxFoundation = mdc.checkbox.MDCCheckboxFoundation;
+      </script>
+
 
       <!-- * Controls * -->
       <script src="./controls/components.js"></script>
@@ -26,6 +54,8 @@
       <!-- * Elements * -->
 
       <!-- * Components * -->
+      <link  href="./components/checkbox/_.css" rel="stylesheet">
+      <script src="./components/checkbox/_.js"></script>
       <link  href="./components/custom-header/_.css" rel="stylesheet">
       <script src="./components/custom-header/_.js"></script>
       <link  href="./components/day/_.css" rel="stylesheet">
@@ -41,6 +71,7 @@
       <link  href="./pages/index/_.css" rel="stylesheet">
       <script src="./pages/index/_.js"></script>
 
+
       <!-- * Initializations * -->
       <script>
       navigation
@@ -52,6 +83,7 @@
          })
          .catch(err => console.error(err));
       </script>
+
 
       <!-- * App title * -->
       <title>Daily Notes</title>

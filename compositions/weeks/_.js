@@ -5,6 +5,14 @@ components.add('weeks', {
    },
 
 
+   props: {
+      'weekends' : {
+         type: Boolean,
+         required: true
+      }
+   },
+
+
    data(){
       return {
          weeks: []
@@ -102,7 +110,7 @@ components.add('weeks', {
    template:
       `
       <ul class="weeks">
-         <week :week="week" v-for="week in weeks"/>
+         <week :weekends="weekends" :week="week" v-for="week in weeks"/>
       </ul>
       `
 });
