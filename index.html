@@ -15,8 +15,9 @@
 
       <!-- * Libraries * -->
       <!-- * Vue * -->
-      <script src="./node_modules/vue/dist/vue.min.js"></script>
-      <script src="./node_modules/vue-router/dist/vue-router.min.js"></script>
+      <script src="./node_modules/vue/dist/vue.js"></script>
+      <script src="./node_modules/vuex/dist/vuex.js"></script>
+      <script src="./node_modules/vue-router/dist/vue-router.js"></script>
 
       <!-- * MDC * -->
       <script src="./node_modules/@material/base/dist/mdc.base.min.js"></script>
@@ -41,6 +42,8 @@
          const MDCCheckbox = mdc.checkbox.MDCCheckbox;
          const MDCCheckboxFoundation = mdc.checkbox.MDCCheckboxFoundation;
       </script>
+
+      <script src="./node_modules/moment/min/moment.min.js"></script>
 
 
       <!-- * Controls * -->
@@ -74,6 +77,18 @@
 
       <!-- * Initializations * -->
       <script>
+      const store = new Vuex.Store({
+         state: {
+            weekends: ((localStorage.getItem('weekends') || 'true') === 'true')
+         },
+         mutations: {
+            showWeekends(state, show){
+               state.weekends = show;
+               localStorage.setItem('weekends', Boolean(show));
+            }
+         }
+      });
+
       navigation
          .navigationMode(navigation.MODES.ABSTRACT)
          .mountOn('#app')

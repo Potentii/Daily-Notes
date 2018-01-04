@@ -5,14 +5,6 @@ components.add('weeks', {
    },
 
 
-   props: {
-      'weekends' : {
-         type: Boolean,
-         required: true
-      }
-   },
-
-
    data(){
       return {
          weeks: []
@@ -87,8 +79,7 @@ components.add('weeks', {
 
          // *Adding all the days into this week:
          for(let i=0; i<7; i++){
-            const new_day = new Date();
-            new_day.setDate(last_sunday.getDate() + i);
+            const new_day = moment(last_sunday).add(i, 'days').toDate();
             new_day.setHours(0, 0, 0, 0);
             week.addDay(new Day('', new_day));
          }
@@ -110,7 +101,7 @@ components.add('weeks', {
    template:
       `
       <ul class="weeks">
-         <week :weekends="weekends" :week="week" v-for="week in weeks"/>
+         <week :week="week" :key="week.days[0].date.getTime()" v-for="week in weeks"/>
       </ul>
       `
 });

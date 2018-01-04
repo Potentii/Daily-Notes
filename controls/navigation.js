@@ -97,7 +97,7 @@ const navigation = (function(){
                   });
 
                   // *Initializing the UI:
-                  const app = new Vue({ router })
+                  const app = new Vue({ router, store:store })
                      .$mount(router_wrapper_id);
 
                   // *Resolving with the router reference:

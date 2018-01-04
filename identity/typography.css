@@ -39,6 +39,22 @@
       local('RobotoSlab Regular'),
       url(../res/fonts/RobotoSlab-Regular.ttf) format('truetype');
 }
+@font-face {
+   font-family: 'Roboto Mono';
+   font-style: normal;
+   font-weight: 400;
+   src:
+      local('RobotoSlab Mono'),
+      url(../res/fonts/RobotoMono-Regular.ttf) format('truetype');
+}
+@font-face {
+   font-family: 'Roboto Mono Medium';
+   font-style: normal;
+   font-weight: 400;
+   src:
+      local('RobotoSlab Mono Medium'),
+      url(../res/fonts/RobotoMono-Medium.ttf) format('truetype');
+}
 
 /**
  * Setting the default app typography

@@ -1,53 +1,86 @@
 .day{
    display: flex;
-   flex-direction: column;
-   padding: 0.2em 0.5em;
-   margin: 0.4em 0;
-} .day.-today::before{
-   content: '';
-   position: absolute;
-   top: 0;
-   left: -0.3em;
-   border-radius: 0.35em;
-   width: 0.35em;
-   height: 100%;
-   background-color: var(--accent-color);
-}
-
-.day > .-weekday-name{
-   cursor: default;
-   opacity: 0.6;
-   font-size: 0.7em;
-} .day.-today > .-weekday-name{
-   opacity: 0.9;
-   font-family: 'Roboto Medium';
+   flex-direction: row;
+   align-items: flex-start;
 }
 
 .day > .-date{
-   cursor: default;
-   font-size: 0.9em;
-} .day.-today > .-date{
-   font-family: 'Roboto Medium';
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   flex-shrink: 0;
+   padding: 0.4em 1em;
+   border-radius: 3px;
+   margin-right: 1em;
+   font-family: 'Roboto Mono';
+   line-height: 1.3em;
+} .day > .-date > .-weekday{
+   font-size: 0.75em;
+   opacity: 0.7;
+} .day > .-date > .-day{
+   font-size: 1.5em;
+   font-family: 'Roboto Mono Medium';
+} .day > .-date > .-month{
+   font-size: 0.95em;
+   opacity: 0.8;
+   font-family: 'Roboto Mono Medium';
+}
+.day.-today > .-date{
+   color: #FAFAFA;
+   background-image: radial-gradient(
+      circle at bottom right,
+      #0091EA,
+      #81D4FA
+   );
+   box-shadow: 0 3px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
-.day > .-editor{
-   margin-top: 0.3em;
-   padding: 0.4em 0.8em;
+.day > .-content{
+   flex-grow: 1;
+}
+
+.day > .-content > .-editor{
    border-radius: 2px;
    white-space: pre-wrap;
-   transition: padding, background-color, margin-top, color, 0.15s ease;
-} .day > .-editor.-editing{
-   padding: 0.6em 0.8em;
-   background-color: var(--contrast-color);
-} .day > .-editor:not(.-editing) ul{
+   min-height: 4em;
+   transition: background-image, padding, color, 0.15s ease;
+} .day > .-content > .-editor.-editing{
+   padding: 0.4em 0.4em;
+   background-image: linear-gradient(to bottom right,
+      rgba(0,0,0,0.05),
+      rgba(0,0,0,0.1)
+    );
+} .day > .-content > .-editor:not(.-editing) ul{
+   display: flex;
+   flex-direction: column;
    padding-left: 1rem;
-   font-size: 0px;
-} .day > .-editor:not(.-editing) li{
-   font-size: 1rem;
+} .day > .-content > .-editor:not(.-editing) li{
    list-style: disc;
    margin: 0.15em 0;
-} .day > .-editor:not(.-editing) li ul li{
+   height: max-content;
+} .day > .-content > .-editor:not(.-editing) li ul li{
    list-style: circle;
-} .day > .-editor:not(.-editing) p{
+} .day > .-content > .-editor:not(.-editing) p{
    display: block;
+}
+.day > .-content > .-editor:not(.-editing) code{
+   background-color: #E0E0E0;
+   padding: 0.1em 0.3em;
+   border-radius: 2px;
+   font-family: monospace;
+} .day > .-content > .-editor:not(.-editing) pre > code{
+   display: inline-block;
+   width: 100%;
+   background-color: #E0E0E0;
+   padding: 0.4em 0.6em;
+}
+
+.day:not(:last-child) > .-content::after{
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 1px;
+   background-color: rgba(0, 0, 0, 0.12);
 }

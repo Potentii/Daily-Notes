@@ -24,7 +24,9 @@ function load(repository_name){
       if(!repository)
          return reject(new Error('Repository not found'));
 
-      fs.readFile(mountRepositoryDirectory(repository_name), 'utf8', (err, content) => {
+      mkdirp.sync(save_folder);
+
+      fs.readFile(mountRepositoryFile(repository_name), 'utf8', (err, content) => {
          if(err) return reject(err);
          try{
             resolve(repository.parse(content));
@@ -48,7 +50,7 @@ function save(repository_name, content){
 
       mkdirp(save_folder, err => {
          if(err) return reject(err);
-         fs.writeFile(mountRepositoryDirectory(repository_name), content, 'utf8', err => {
+         fs.writeFile(mountRepositoryFile(repository_name), content, 'utf8', err => {
             if(err) return reject(err);
             resolve();
          });
@@ -70,7 +72,7 @@ function getSaveFolder(){
 
 
 
-function mountRepositoryDirectory(repository_name){
+function mountRepositoryFile(repository_name){
    return save_folder + path.sep + repository_name + '.json';
 }
 

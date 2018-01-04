@@ -1,6 +1,11 @@
-const WEEKDAYS = new Map([
-   ['pt-BR', ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado']],
-   ['en-US', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']]
+const WEEKDAYS_ABBR = new Map([
+   ['pt-BR', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']],
+   ['en-US', ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']]
+]);
+
+const MONTHS_ABBR = new Map([
+   ['pt-BR', ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']],
+   ['en-US', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
 ]);
 
 const marked = require('marked');
@@ -23,7 +28,9 @@ components.add('day', {
       return {
          notes_md: undefined,
          notes_html: undefined,
-         editing: false
+         editing: false,
+         WEEKDAYS_ABBR,
+         MONTHS_ABBR
       }
    },
 
@@ -77,22 +84,30 @@ components.add('day', {
                return repository.save('weeks', weeks);
             })
             .catch(console.error);
+      },
+
+      pad10(v){
+         return v<10?'0'+v:''+v;
       }
+
    },
 
 
    template:
       `
       <div class="day" :class="{ '-today':(day.date.toDateString() === new Date().toDateString())  }">
-         <span class="-weekday-name">{{ WEEKDAYS.get('en-US')[day.date.getDay()] }}</span>
-         <span class="-date">{{ day.date.toLocaleDateString('pt-BR') }}</span>
-         <div
-            contenteditable="true"
-            class="-editor"
-            :class="{ '-editing':editing }"
-            @focus="onNotesFocus($event)"
-            @blur="onNotesBlur($event)"
-            v-html="editing ? notes_md : notes_html"/>
+         <div class="-date">
+            <span class="-weekday">{{ WEEKDAYS_ABBR.get('en-US')[day.date.getDay()] }}</span>
+            <span class="-day">{{ pad10(day.date.getDate()) }}</span>
+            <span class="-month">{{ MONTHS_ABBR.get('en-US')[day.date.getMonth()] }}</span>
+         </div>
+         <div class="-content"><div
+               contenteditable="true"
+               class="-editor"
+               :class="{ '-editing':editing }"
+               @focus="onNotesFocus($event)"
+               @blur="onNotesBlur($event)"
+               v-html="editing ? notes_md : notes_html"/></div>
       </div>
       `
 });
